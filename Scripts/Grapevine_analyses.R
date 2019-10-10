@@ -38,7 +38,9 @@ raw_r3b6 <- read_xlsx("Data/3&4. 0192 barcodes (LAM)-BIOMASS.REP3.xlsx", sheet =
 
 #filter the raw files to select for rows with chloride data only (not standard data)
 C_r1b1_fil <- raw_r1b1 %>%
-  drop_na(Code) #Chloride data has values in Code column, standards do not so can be removed on this basis
+  drop_na(Code) %>% #Chloride data has values in Code column, standards do not so can be removed on this basis
+  filter("Code" != "Code")
+
 
 C_r1b2_fil <- raw_r1b2 %>%
   drop_na(Code)
@@ -89,4 +91,8 @@ C_r3b5_fil <- raw_r3b5 %>%
   drop_na(Code)
 
 C_r3b6_fil <- raw_r3b6 %>%
-  drop_na(Code)
+  drop_na(Code) %>% 
+  Filter(C_r3b6_fil, "Code" != Code)
+
+
+view(C_r3b6_fil)
